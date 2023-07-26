@@ -6,4 +6,11 @@ catboost
 xgboost
 dill
 flask
+tensorflow
+dvc
+notebook
+python-box==6.0.2
+tqdm
+pyYAML
+scipy
 -e .
