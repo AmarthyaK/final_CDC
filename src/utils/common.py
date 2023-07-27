@@ -4,6 +4,7 @@ import sys
 import os
 from src.exception import CustomException
 from box import ConfigBox
+import tensorflow as tf
 
 import boto3
 
@@ -15,8 +16,8 @@ import yaml
 
 from ensure import ensure_annotations
 
-os.chdir("../")
-os.chdir("../")
+#os.chdir("../")
+#os.chdir("../")
 
 # reading yaml file
 @ensure_annotations
