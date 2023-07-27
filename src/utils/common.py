@@ -15,6 +15,8 @@ import yaml
 
 from ensure import ensure_annotations
 
+os.chdir("../")
+os.chdir("../")
 
 # reading yaml file
 @ensure_annotations
