@@ -10,13 +10,18 @@ os.makedirs(logs_path, exist_ok=True)
 
 LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
 
-logging.basicConfig(
-    filename=LOG_FILE_PATH,
-    format = "[%(asctime)s] %(lineno)d %(name)s %(levelname)s - %(message)s",
-    level=logging.INFO,
+# Create a file handler
+file_handler = logging.FileHandler(LOG_FILE_PATH)
+file_handler.setFormatter(logging.Formatter("[%(asctime)s] %(lineno)d %(name)s %(levelname)s - %(message)s"))
 
-    handlers = [
-        logging.FileHandler(LOG_FILE_PATH),
-        logging.StreamHandler(sys.stdout)
-    ]
+# Create a stream handler for stdout
+stream_handler = logging.StreamHandler(sys.stdout)
+stream_handler.setFormatter(logging.Formatter("[%(asctime)s] %(lineno)d %(name)s %(levelname)s - %(message)s"))
+
+
+logging.basicConfig(
+    #filename=LOG_FILE_PATH,
+    #format = "[%(asctime)s] %(lineno)d %(name)s %(levelname)s - %(message)s",
+    level=logging.INFO,
+    handlers=[file_handler, stream_handler]
 )
