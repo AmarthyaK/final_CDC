@@ -11,12 +11,15 @@ class DataIngestionConfig:
     unzip_dir: Path
 
 @dataclass(frozen=True)
-class ParamsConfig:
-    IMAGE_SIZE: list #as per VGG16 model, it s required to have the image size as 224,224,3
-    BATCH_SIZE: int
-    INCLUDE_TOP: bool
-    EPOCHS: int
-    CLASSES: int
-    WEIGHTS: str
-    LEARNING_RATE: float
+class BaseModelConfig:
+    root_dir: str
+    base_model_path: Path
+    updated_base_model_path: Path
+    params_img_size: list #as per VGG16 model, it s required to have the image size as 224,224,3
+    params_batch_size: int
+    params_include_top: bool
+    params_epochs: int
+    params_classes: int
+    params_weights: str
+    params_learning_rate: float
 

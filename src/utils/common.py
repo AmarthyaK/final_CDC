@@ -16,8 +16,13 @@ import yaml
 
 from ensure import ensure_annotations
 
-#os.chdir("../")
-#os.chdir("../")
+
+current_file_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.join(current_file_dir, '..', '..')
+
+os.chdir(root_dir)
+
+logging.info(f"Current working directory: {os.getcwd()}")
 
 # reading yaml file
 @ensure_annotations

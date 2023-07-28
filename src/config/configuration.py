@@ -1,4 +1,6 @@
 from src.entity.config_entity import DataIngestionConfig
+from src.entity.config_entity import BaseModelConfig
+
 from src.utils.common import create_directories
 from src.utils.common import read_yaml
 from src.constants import constant_paths
@@ -35,3 +37,23 @@ class ConfigurationManager:
                                                     local_data_file=config.local_data_file,unzip_dir=config.unzip_dir)
         #returning a class with loaded data path files
         return Data_ingestion_Config
+
+    def prepare_base_model(self) -> BaseModelConfig:
+            config = self.config.base_model
+
+            create_directories([config.root_dir])
+
+            base_model_config = BaseModelConfig(
+                root_dir = config.root_dir,
+                base_model_path=config.base_model_path,
+                updated_base_model_path= config.updated_base_model_path,
+                params_img_size=self.params.IMAGE_SIZE,
+                params_batch_size=self.params.BATCH_SIZE,
+                params_include_top=self.params.INCLUDE_TOP,
+                params_learning_rate=self.params.LEARNING_RATE,
+                params_epochs=self.params.EPOCHS,
+                params_weights=self.params.WEIGHTS,
+                params_classes=self.params.CLASSES
+            )
+            #returning a class with loaded data path files
+            return base_model_config
