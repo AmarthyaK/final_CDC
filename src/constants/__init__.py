@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 #config and params file paths
 
 CONFIG_FILE_PATH = Path("config/config.yaml")
