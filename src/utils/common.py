@@ -6,6 +6,8 @@ from src.exception import CustomException
 from box import ConfigBox
 import tensorflow as tf
 
+import json
+
 import boto3
 
 import urllib.request as request
@@ -103,3 +105,18 @@ def download_s3(local_data_file: Path):
     
     except Exception as e:
         raise CustomException(e,sys)
+    
+#saving json files
+
+@ensure_annotations
+def save_json(path: Path, data: dict):
+    """save json data
+
+    Args:
+        path (Path): path to json file
+        data (dict): data to be saved in json file
+    """
+    with open(path, "w") as f:
+        json.dump(data, f, indent=4)
+
+    logging.info(f"json file saved at: {path}")

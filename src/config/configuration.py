@@ -2,6 +2,7 @@ from src.entity.config_entity import DataIngestionConfig
 from src.entity.config_entity import BaseModelConfig
 from src.entity.config_entity import PrepareCallbacksConfig
 from src.entity.config_entity import ModelTrainConfig
+from src.entity.config_entity import EvaluationConfig
 
 import os
 from pathlib import Path
@@ -98,3 +99,16 @@ class ConfigurationManager:
         )
 
         return model_train_config
+    
+    #evaluation
+    def get_validation_config(self) -> EvaluationConfig:
+         
+        eval_config = EvaluationConfig(
+            path_of_model= "artifacts/training/model.h5",
+            path_of_data= "artifacts/data_ingestion/Dataset_CDC_category",
+            all_params=self.params,
+            params_img_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE
+        )
+
+        return eval_config

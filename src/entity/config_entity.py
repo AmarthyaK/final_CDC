@@ -40,3 +40,13 @@ class ModelTrainConfig:
     params_image_size: int
     params_is_augmentation: bool
 
+#evaluation
+
+@dataclass(frozen = True)
+class EvaluationConfig:
+    path_of_model: Path
+    path_of_data: Path
+    all_params: dict
+    params_img_size: list
+    params_batch_size: int
+
