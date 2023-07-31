@@ -1,6 +1,7 @@
 from src.entity.config_entity import DataIngestionConfig
 from src.entity.config_entity import BaseModelConfig
 from src.entity.config_entity import PrepareCallbacksConfig
+from src.entity.config_entity import ModelTrainConfig
 
 import os
 from pathlib import Path
@@ -77,3 +78,23 @@ class ConfigurationManager:
         )
         #returning a class with loaded data path files
         return prepare_callbacks_config
+
+    def model_train_config(self) -> ModelTrainConfig:
+        training = self.config.model_train
+        prepare_base_model = self.config.base_model
+        params = self.params
+        training_data_path = os.path.join(self.config.data_ingestion.unzip_dir,"Dataset_CDC_category")
+        create_directories([Path(training.root_dir)])
+
+        model_train_config = ModelTrainConfig(
+            root_dir = Path(training.root_dir),
+            trained_model_path = Path(training.trained_model_path),
+            updated_base_model_path=self.config.base_model.updated_base_model_path,
+            training_data=Path(training_data_path),
+            params_epochs = params.EPOCHS,
+            params_batch_size = params.BATCH_SIZE,
+            params_image_size = params.IMAGE_SIZE,
+            params_is_augmentation= params.AUGMENTATION
+        )
+
+        return model_train_config
