@@ -7,6 +7,8 @@ from src.config.configuration import ConfigurationManager
 from src.components.callbacks import PrepareCallbacks
 from src.components.model_training import Training
 
+from src.logger import logging
+
 
 import sys
 
@@ -23,6 +25,7 @@ class Callbacks_ModelTrain_Pipeline:
             #training model
             model_train_config = configmanager.model_train_config()
             model_train = Training(model_train_config)
+            #logging.info(f"model train config is {model_train_config}")
             model_train.get_base_model()
             model_train.train_valid_generator()
             model_train.train(callbacks_list)

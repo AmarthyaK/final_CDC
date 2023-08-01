@@ -49,4 +49,5 @@ class EvaluationConfig:
     all_params: dict
     params_img_size: list
     params_batch_size: int
+    path_scores_json: Path
 

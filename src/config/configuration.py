@@ -6,6 +6,9 @@ from src.entity.config_entity import EvaluationConfig
 
 import os
 from pathlib import Path
+import sys
+
+from src.exception import CustomException
 
 from src.utils.common import create_directories
 from src.utils.common import read_yaml
@@ -102,13 +105,18 @@ class ConfigurationManager:
     
     #evaluation
     def get_validation_config(self) -> EvaluationConfig:
-         
+
+        eval_config = self.config.evaluation
+
+        create_directories([eval_config.root_dir])
+        
         eval_config = EvaluationConfig(
             path_of_model= "artifacts/training/model.h5",
             path_of_data= "artifacts/data_ingestion/Dataset_CDC_category",
             all_params=self.params,
             params_img_size=self.params.IMAGE_SIZE,
-            params_batch_size=self.params.BATCH_SIZE
+            params_batch_size=self.params.BATCH_SIZE,
+            path_scores_json = eval_config.path_scores_json
         )
 
         return eval_config
