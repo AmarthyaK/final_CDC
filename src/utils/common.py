@@ -92,9 +92,9 @@ def download_s3(local_data_file: Path):
     try:
         s3 = boto3.resource(
         service_name='s3',
-        region_name='us-east-2',
-        aws_access_key_id='AKIA6MIKGRKFH4QA3J75',
-        aws_secret_access_key='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'
+        region_name='',
+        aws_access_key_id='',
+        aws_secret_access_key=''
         )
         if not os.path.exists(local_data_file):
             logging.info("Inside download function")
