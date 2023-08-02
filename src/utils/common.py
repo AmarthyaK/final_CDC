@@ -5,6 +5,7 @@ import os
 from src.exception import CustomException
 from box import ConfigBox
 import tensorflow as tf
+import base64
 
 import json
 
@@ -121,3 +122,12 @@ def save_json(path: Path, data: dict):
         json.dump(data, f, indent=4)
 
     logging.info(f"json file saved at: {path}")
+
+
+## Decoding Image
+
+def decodeImage(imgstring, fileName):
+    imgdata = base64.b64decode(imgstring)
+    with open(fileName, 'wb') as f:
+        f.write(imgdata)
+        f.close()
